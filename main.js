@@ -233,3 +233,12 @@
   new PureCounter();
 
 })()
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxQuCy0k9NrHXKlSX3lgzE68aqwMXsy6RDnueOlg5Ge0Dymyw2lzdU2k1W_WhmEqlrFLw/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
